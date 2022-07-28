@@ -11,10 +11,16 @@ npm i @jobscale/base64
 ### base64
 
 ```javascript
-require('@jobscale/logger');
-require('@jobscale/base64');
+const { logger } = require('@jobscale/logger');
+const { base64 } = require('@jobscale/base64');
 
-logger.info({ timestamp: Date.now() });
+const encoded = base64.encode('@jobscale/base64');
+const decoded = base64.decoded(encoded);
+logger.info({
+  timestamp: Date.now(),
+  encoded,
+  decoded,
+});
 ```
 
 ## Jest test

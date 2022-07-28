@@ -7,6 +7,5 @@ module.exports = async () => {
   global.window = global;
   return {
     ...config,
-    preset: 'jest-puppeteer',
   };
 };

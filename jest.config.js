@@ -1,5 +1,8 @@
 const config = {
   verbose: true,
+  testTimeout: 10,
+  maxWorkers: 1,
+  setupFilesAfterEnv: ['./jest.setup.js'],
 };
 
 module.exports = async () => {

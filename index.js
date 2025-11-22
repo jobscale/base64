@@ -4,18 +4,36 @@ export class Base64 {
     this.Base64 = Base64;
   }
 
-  encode(str) {
-    if (typeof window !== 'undefined') {
-      return btoa(unescape(encodeURIComponent(str)));
+  encode(bin) {
+    if (typeof window === 'undefined') {
+      return Buffer.from(bin).toString('base64');
     }
-    return Buffer.from(str).toString('base64');
+
+    let binary = '';
+    const bytes = typeof bin === 'string'
+      ? new TextEncoder().encode(bin)
+      : new Uint8Array(bin);
+    for (let i = 0; i < bytes.length; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary);
   }
 
-  decode(str) {
-    if (typeof window !== 'undefined') {
-      return decodeURIComponent(String.escape(atob(str)));
+  decode(str, type) {
+    if (typeof window === 'undefined') {
+      const buffer = Buffer.from(str, 'base64');
+      return type === 'utf-8' ? buffer.toString('utf-8') : buffer;
     }
-    return Buffer.from(str, 'base64').toString();
+
+    const binary = atob(str);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    if (type === 'utf-8') {
+      return new TextDecoder('utf-8').decode(bytes);
+    }
+    return bytes.buffer;
   }
 }
 

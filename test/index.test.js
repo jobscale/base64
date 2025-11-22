@@ -1,4 +1,4 @@
-const { base64 } = require('..');
+import { base64 } from '../index.js';
 
 const logger = console;
 const data = {
@@ -14,7 +14,7 @@ describe('test base64', () => {
   });
 
   it('decoded toEqual prompt', async () => {
-    const decoded = base64.decode(data.encoded);
+    const decoded = base64.decode(data.encoded, 'utf-8');
     logger.info({ decoded });
     expect(decoded).toEqual(data.string);
   });

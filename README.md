@@ -11,8 +11,8 @@ npm i @jobscale/base64
 ### base64
 
 ```javascript
-const { logger } = require('@jobscale/logger');
-const { base64 } = require('@jobscale/base64');
+import { logger } from '@jobscale/logger';
+import { base64 } from '@jobscale/base64';
 
 const encoded = base64.encode('@jobscale/base64');
 const decoded = base64.decoded(encoded);

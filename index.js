@@ -38,7 +38,4 @@ export class Base64 {
 }
 
 export const base64 = new Base64();
-export default {
-  Base64,
-  base64,
-};
+export default { Base64, base64 };
